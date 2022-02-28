@@ -39,8 +39,25 @@ const displayMobiles = mobiles => {
 
 };
 
-const loadMobileDetail = mobileId => {
-    console.log(mobileId);
+const loadMobileDetail = id => {
+    const url = `https://openapi.programming-hero.com/api/phone/${id}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayMobileDetail(data.data));
+}
+
+const displayMobileDetail = mobile => {
+    const mobileDetail = document.getElementById('mobile-detail');
+    const div = document.createElement('div');
+    div.classList.add('card');
+    div.innerHTML = `
+            <img src="${mobile.image}" class="mx-auto my-5 w-30 rounded" alt="...">
+        <div class="card-body">
+            <p class="card-text">Some content.</p>
+        </div>
+
+    `;
+    mobileDetail.appendChild(div);
 }
 
 

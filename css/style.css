@@ -1,3 +1,7 @@
+#error-message{
+    display: none
+}
+
 .post{
     background-color: aquamarine;
     padding: 10px;

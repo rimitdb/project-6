@@ -4,7 +4,8 @@ const searchMobile = () => {
     const searchText = searchBox.value;
     searchBox.value = '';
     if (searchText == '') {
-        alert('Please Type a Valid Mobile Name')
+        const errorMessage = document.getElementById('error-message');
+        errorMessage.style.display = 'block'
     } else {
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
         fetch(url)
@@ -18,7 +19,8 @@ const displayMobiles = mobiles => {
     const mobilesData = document.getElementById('mobileDiv');
     mobilesData.textContent = '';
     if (mobiles == null) {
-        alert("Nothing Found !!")
+        const errorMessage = document.getElementById('error-message');
+        errorMessage.style.display = 'block'
     } else {
         mobiles.forEach(mobile => {
             const div = document.createElement('div');
@@ -48,48 +50,19 @@ const loadMobileDetail = id => {
 
 const displayMobileDetail = mobile => {
     const mobileDetail = document.getElementById('mobile-detail');
+    mobileDetail.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
-            <img src="${mobile.image}" class="mx-auto my-5 w-30 rounded" alt="...">
+        <img src="${mobile.image}" class="mx-auto my-5 w-30 rounded" alt="...">
         <div class="card-body">
-            <p class="card-text">Some content.</p>
+        <p class="card-text fs-5">Name: ${mobile.name}</p>
+        <p class="card-text fs-5">Brand: ${mobile.brand}</p>
+        <p class="card-text fs-5">Release Date: ${mobile.releaseDate ? mobile.releaseDate : 'No release date found'}</p>
+        <p class="card-text fs-5 ">Main Fetures: <p class="fs-6">Storage: ${mobile.mainFeatures.storage}<br> Display: ${mobile.mainFeatures.displaySize}<br> Chipset: ${mobile.mainFeatures.chipSet}<br> Memory: ${mobile.mainFeatures.memory}<br> Sensors: ${mobile.mainFeatures.sensors[0]} , ${mobile.mainFeatures.sensors[1]} , ${mobile.mainFeatures.sensors[2]} ,  ${mobile.mainFeatures.sensors[3]} , ${mobile.mainFeatures.sensors[4]} , ${mobile.mainFeatures.sensors[5]}</p></p>
+        <p class="card-text fs-5 ">Others: <p class="fs-6">WLAN: ${mobile.others.WLAN}<br> Bluetooth: ${mobile.others.Bluetooth}<br> GPS: ${mobile.others.GPS}<br> NFC: ${mobile.others.NFC}<br> Radio: ${mobile.others.Radio}<br> USB: ${mobile.others.USB}</p></p>
         </div>
 
     `;
     mobileDetail.appendChild(div);
-}
-
-
-// const details = (id) => {
-//     const url = `https://www.thesportsdb.com/api/v1/json/2/lookupplayer.php?id=${id}`;
-//     fetch(url)
-//         .then((res) => res.json())
-//         .then((data) => setDetails(data.players[0]));
-// };
-
-// const setDetails = (info) => {
-//     document.getElementById("playerDetails").innerHTML = `
-//     <div class="modal" id="myModal">
-//     <div class="modal-dialog">
-//         <div class="modal-content">
-//             <div class="modal-header">
-//                 <h5 class="modal-title">${info.strPlayer}</h5>
-//                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-//             </div>
-//             <div class="modal-body">
-//             <p class="card-text">Nationality: ${info.strNationality}</p>
-//             <p class="card-text">Sports: ${info.strSport}</p>
-//             <p class="card-text">Club: ${info.strTeam}</p>
-//             <p class="card-text">Nationality: ${info.strNationality}</p>
-//             <p class="card-text">Sports: ${info.strSport}</p>
-//             <p class="card-text">Club: ${info.strTeam}</p>
-//             <p class="card-text">Nationality: ${info.strNationality}</p>
-//             <p class="card-text">Sports: ${info.strSport}</p>
-//             <p class="card-text">Club: ${info.strTeam}</p>
-//             </div>
-//         </div>
-//     </div>
-// </div>
-//       `;
-// };
+};

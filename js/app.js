@@ -2,24 +2,25 @@
 const searchMobile = () => {
     const searchBox = document.getElementById("search-box");
     const searchText = searchBox.value;
+    const errorMessage = document.getElementById('error-message');
     searchBox.value = '';
     if (searchText == '') {
-        const errorMessage = document.getElementById('error-message');
         errorMessage.style.display = 'block'
     } else {
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
         fetch(url)
             .then(res => res.json())
             .then(data => displayMobiles(data.data));
+        errorMessage.style.display = 'none'
     }
 
 };
 
 const displayMobiles = mobiles => {
     const mobilesData = document.getElementById('mobileDiv');
+    const errorMessage = document.getElementById('error-message');
     mobilesData.textContent = '';
     if (mobiles == null) {
-        const errorMessage = document.getElementById('error-message');
         errorMessage.style.display = 'block'
     } else {
         mobiles.forEach(mobile => {
@@ -37,6 +38,7 @@ const displayMobiles = mobiles => {
                 `;
             mobilesData.appendChild(div);
         })
+        errorMessage.style.display = 'none'
     }
 
 };

@@ -18,10 +18,12 @@ const searchMobile = () => {
 
 const displayMobiles = mobiles => {
     const mobilesData = document.getElementById('mobileDiv');
-    const errorMessage = document.getElementById('error-message');
+    const errorMessage2 = document.getElementById('error-message2');
+    const mobileDetail = document.getElementById('mobile-detail');
+    mobileDetail.textContent = '';
     mobilesData.textContent = '';
-    if (mobiles == null) {
-        errorMessage.style.display = 'block'
+    if (mobiles == false) {
+        errorMessage2.style.display = 'block'
     } else {
         mobiles.forEach(mobile => {
             const div = document.createElement('div');
@@ -38,7 +40,7 @@ const displayMobiles = mobiles => {
                 `;
             mobilesData.appendChild(div);
         })
-        errorMessage.style.display = 'none'
+        errorMessage2.style.display = 'none'
     }
 
 };

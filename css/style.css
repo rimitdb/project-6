@@ -1,7 +1,9 @@
 #error-message{
     display: none
 }
-
+#error-message2{
+    display: none;
+}
 .post{
     background-color: aquamarine;
     padding: 10px;

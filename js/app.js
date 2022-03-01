@@ -2,7 +2,8 @@
 // Spinner toggle function
 const toggleSpinner = displayStyle => {
     document.getElementById('spinner').style.display = displayStyle;
-}
+};
+
 //mobile search function
 
 const searchMobile = () => {
@@ -71,7 +72,7 @@ const loadMobileDetail = id => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayMobileDetail(data.data));
-}
+};
 
 const displayMobileDetail = mobile => {
     const mobileDetail = document.getElementById('mobile-detail');
@@ -81,11 +82,11 @@ const displayMobileDetail = mobile => {
     div.innerHTML = `
         <img src="${mobile.image}" class="mx-auto my-5 w-30 rounded" alt="...">
         <div class="card-body">
-        <p class="card-text fs-6">Name: ${mobile.name}</p>
-        <p class="card-text fs-6">Release Date: ${mobile.releaseDate ? mobile.releaseDate : 'No release date found'}</p>
-        <p class="card-text fs-6">Brand: ${mobile.brand}</p>
-        <p class="card-text fs-5 ">Main Fetures<p class="fs-6">Storage: ${mobile.mainFeatures.storage}<br> Display: ${mobile.mainFeatures.displaySize}<br> Chipset: ${mobile.mainFeatures.chipSet}<br> Memory: ${mobile.mainFeatures.memory}<br> Sensors: ${mobile.mainFeatures.sensors.join(', ')}</p></p >
-    <p class="card-text fs-5 ">Others<p class="fs-6">NFC: ${mobile.others?.NFC ? mobile.others?.NFC : 'N/A'}<br>Radio: ${mobile.others?.Radio ? mobile.others?.Radio : 'N/A'}<br>Bluetooth: ${mobile.others?.Bluetooth ? mobile.others?.Bluetooth : 'N/A'}<br>USB: ${mobile.others?.USB ? mobile.others?.USB : 'N/A'}<br>GPS: ${mobile.others?.GPS ? mobile.others?.GPS : 'N/A'}<br>WLAN: ${mobile.others?.WLAN ? mobile.others?.WLAN : 'N/A'}</p></p>
+        <p class="card-text">Name: ${mobile.name}</p>
+        <p class="card-text">Release Date: ${mobile.releaseDate ? mobile.releaseDate : 'No release date found'}</p>
+        <p class="card-text">Brand: ${mobile.brand}</p>
+        <p class="card-text fs-5 "><p class="fw-bold">Main Fetures</p><p class="fs-6">Storage: ${mobile.mainFeatures.storage}<br> Display: ${mobile.mainFeatures.displaySize}<br> Chipset: ${mobile.mainFeatures.chipSet}<br> Memory: ${mobile.mainFeatures.memory}<br> Sensors: ${mobile.mainFeatures.sensors.join(', ')}</p></p >
+    <p class="card-text fs-5 "><p class="fw-bold">Others</p><p class="fs-6">NFC: ${mobile.others?.NFC ? mobile.others?.NFC : 'N/A'}<br>Radio: ${mobile.others?.Radio ? mobile.others?.Radio : 'N/A'}<br>Bluetooth: ${mobile.others?.Bluetooth ? mobile.others?.Bluetooth : 'N/A'}<br>USB: ${mobile.others?.USB ? mobile.others?.USB : 'N/A'}<br>GPS: ${mobile.others?.GPS ? mobile.others?.GPS : 'N/A'}<br>WLAN: ${mobile.others?.WLAN ? mobile.others?.WLAN : 'N/A'}</p></p>
     </div>
 
         `;

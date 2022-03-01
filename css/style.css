@@ -1,5 +1,9 @@
+#spinner{
+    display: none;
+}
+
 #error-message{
-    display: none
+    display: none;
 }
 #error-message2{
     display: none;

@@ -18,11 +18,15 @@
         <div class="input-group mb-3 w-50 mx-auto">
             <input id="search-box" type="text" class="form-control" placeholder="Search">
             <button onclick="searchMobile()" class="btn btn-success" type="button">Search</button>
-
         </div>
         <div>
             <p id="error-message" class="fs-3 text-center">Please Type a Valid Mobile Name</p>
             <p id="error-message2" class="fs-3 text-center">No results found, Please try again.</p>
+        </div>
+        <div class="d-flex justify-content-center text-center">
+            <div id="spinner" class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </div>
     </section>
     <!-- Mobile Details Section -->

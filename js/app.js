@@ -1,17 +1,27 @@
 
+
+// Spinner toggle function
+const toggleSpinner = displayStyle => {
+    document.getElementById('spinner').style.display = displayStyle;
+}
+
 const searchMobile = () => {
     const searchBox = document.getElementById("search-box");
     const searchText = searchBox.value;
+
+    // display spinner
+    toggleSpinner('block');
     const errorMessage = document.getElementById('error-message');
     searchBox.value = '';
     if (searchText == '') {
-        errorMessage.style.display = 'block'
+        errorMessage.style.display = 'block';
+        toggleSpinner('none');
     } else {
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
         fetch(url)
             .then(res => res.json())
             .then(data => displayMobiles(data.data));
-        errorMessage.style.display = 'none'
+        errorMessage.style.display = 'none';
     }
 
 };
@@ -23,7 +33,8 @@ const displayMobiles = mobiles => {
     mobileDetail.textContent = '';
     mobilesData.textContent = '';
     if (mobiles == false) {
-        errorMessage2.style.display = 'block'
+        errorMessage2.style.display = 'block';
+        toggleSpinner('none');
     } else {
         mobiles.forEach(mobile => {
             const div = document.createElement('div');
@@ -40,7 +51,8 @@ const displayMobiles = mobiles => {
                 `;
             mobilesData.appendChild(div);
         })
-        errorMessage2.style.display = 'none'
+        errorMessage2.style.display = 'none';
+        toggleSpinner('none');
     }
 
 };

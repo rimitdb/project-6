@@ -1,9 +1,9 @@
 
-
 // Spinner toggle function
 const toggleSpinner = displayStyle => {
     document.getElementById('spinner').style.display = displayStyle;
 }
+//mobile search function
 
 const searchMobile = () => {
     const searchBox = document.getElementById("search-box");
@@ -11,8 +11,13 @@ const searchMobile = () => {
 
     // display spinner
     toggleSpinner('block');
+
+    // empty search box error
     const errorMessage = document.getElementById('error-message');
+
     searchBox.value = '';
+
+    // empty search box valitation
     if (searchText == '') {
         errorMessage.style.display = 'block';
         toggleSpinner('none');
@@ -25,6 +30,8 @@ const searchMobile = () => {
     }
 
 };
+
+// display search results
 
 const displayMobiles = mobiles => {
     const mobilesData = document.getElementById('mobileDiv');
@@ -42,7 +49,7 @@ const displayMobiles = mobiles => {
             div.innerHTML = `
             <div class="card">
                 <img src="${mobile.image}" class="mx-auto my-5 w-50 img-fluid rounded" alt="...">
-            <div class="card-body">
+            <div class="card-body mx-auto">
                 <h5 class="card-title">${mobile.phone_name}</h5>
                 <p class="card-text">Brand: ${mobile.brand}</p>
                 <button onclick="loadMobileDetail('${mobile.slug}')" class="btn btn-success" type="button">More Info</button>
@@ -56,6 +63,8 @@ const displayMobiles = mobiles => {
     }
 
 };
+
+// single Mobile details fetch and Display
 
 const loadMobileDetail = id => {
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
@@ -72,13 +81,13 @@ const displayMobileDetail = mobile => {
     div.innerHTML = `
         <img src="${mobile.image}" class="mx-auto my-5 w-30 rounded" alt="...">
         <div class="card-body">
-        <p class="card-text fs-5">Name: ${mobile.name}</p>
-        <p class="card-text fs-5">Brand: ${mobile.brand}</p>
-        <p class="card-text fs-5">Release Date: ${mobile.releaseDate ? mobile.releaseDate : 'No release date found'}</p>
-        <p class="card-text fs-5 ">Main Fetures: <p class="fs-6">Storage: ${mobile.mainFeatures.storage}<br> Display: ${mobile.mainFeatures.displaySize}<br> Chipset: ${mobile.mainFeatures.chipSet}<br> Memory: ${mobile.mainFeatures.memory}<br> Sensors: ${mobile.mainFeatures.sensors[0]} , ${mobile.mainFeatures.sensors[1]} , ${mobile.mainFeatures.sensors[2]} ,  ${mobile.mainFeatures.sensors[3]} , ${mobile.mainFeatures.sensors[4]} , ${mobile.mainFeatures.sensors[5]}</p></p>
-        <p class="card-text fs-5 ">Others: <p class="fs-6">WLAN: ${mobile.others.WLAN}<br> Bluetooth: ${mobile.others.Bluetooth}<br> GPS: ${mobile.others.GPS}<br> NFC: ${mobile.others.NFC}<br> Radio: ${mobile.others.Radio}<br> USB: ${mobile.others.USB}</p></p>
-        </div>
+        <p class="card-text fs-6">Name: ${mobile.name}</p>
+        <p class="card-text fs-6">Release Date: ${mobile.releaseDate ? mobile.releaseDate : 'No release date found'}</p>
+        <p class="card-text fs-6">Brand: ${mobile.brand}</p>
+        <p class="card-text fs-5 ">Main Fetures<p class="fs-6">Storage: ${mobile.mainFeatures.storage}<br> Display: ${mobile.mainFeatures.displaySize}<br> Chipset: ${mobile.mainFeatures.chipSet}<br> Memory: ${mobile.mainFeatures.memory}<br> Sensors: ${mobile.mainFeatures.sensors.join(', ')}</p></p >
+    <p class="card-text fs-5 ">Others<p class="fs-6">NFC: ${mobile.others?.NFC ? mobile.others?.NFC : 'N/A'}<br>Radio: ${mobile.others?.Radio ? mobile.others?.Radio : 'N/A'}<br>Bluetooth: ${mobile.others?.Bluetooth ? mobile.others?.Bluetooth : 'N/A'}<br>USB: ${mobile.others?.USB ? mobile.others?.USB : 'N/A'}<br>GPS: ${mobile.others?.GPS ? mobile.others?.GPS : 'N/A'}<br>WLAN: ${mobile.others?.WLAN ? mobile.others?.WLAN : 'N/A'}</p></p>
+    </div>
 
-    `;
+        `;
     mobileDetail.appendChild(div);
 };
